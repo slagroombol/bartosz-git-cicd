@@ -16,8 +16,8 @@ jobs:
         python-version: ["3.11", "3.12", "3.13"]
 
     permissions:
-      checks: write
-      pull-requests: write
+     checks: write
+     pull-requests: write
 
     steps:        
       - name: Checkout latest code from GitHub

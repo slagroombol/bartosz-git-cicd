@@ -37,8 +37,8 @@ jobs:
         run: pytest ./tests/account_tests.py --junitxml=junit/results-${{ matrix.python-version }}.xml
 
       - name: Publish Test Results
- 	uses: EnricoMi/publish-unit-test-result-action@v2
-  	if: (!cancelled())
-        with:
-    	  files: junit/results-${{ matrix.python-version }}.xml
+        if: ${{ always() }}
+ 	      uses: EnricoMi/publish-unit-test-result-action@v2
+  	    with:
+    	    files: junit/results-${{ matrix.python-version }}.xml
         

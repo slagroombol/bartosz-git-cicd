@@ -1,0 +1,36 @@
+name: Bartosz CI/CD pipeline
+
+on:
+    push:
+      branches:
+        - main
+    pull_request:
+
+jobs:
+  run-the-tests:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+
+    permissions:
+      checks: write
+      pull-requests: write
+
+    steps:        
+      - name: Checkout latest code from GitHub
+        uses: actions/checkout@v6
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6
+        with:
+            python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Run tests
+        run: pytest ./tests/account_tests.py
+        

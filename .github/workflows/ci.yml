@@ -1,7 +1,8 @@
 name: Bartosz CI/CD pipeline
 
 on:
-    workflow_run: 
+    workflow_dispatch:
+      
     push:
       branches:
         - master
